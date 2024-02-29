@@ -23,14 +23,13 @@ class PinjamController extends Controller
     //method untuk tampil data peminjaman
     public function pinjamtampil()
     {
-        $datapinjam = PinjamModel::orderby('id_pinjam', 'ASC')
-        ->paginate(5);
+        $peminjam['peminjaman'] = PinjamModel::all();
+        $anggota['anggota'] = AnggotaModel::all();
+        $petugas['petugas'] = PetugasModel::all();
+        $buku['buku'] = BukuModel::all();
+        // $array = $data->toArray();
 
-        $datapetugas    = PetugasModel::all();
-        $dataanggota      = AnggotaModel::all();
-        $databuku       = BukuModel::all();
-
-        return view('halaman/view_pinjam',['pinjam'=>$datapinjam,'petugas'=>$datapetugas,'anggota'=>$dataanggota,'buku'=>$databuku]);
+        return view('halaman.view_pinjam', $peminjam, $anggota, $petugas);
     }
 
     //method untuk tambah data peminjaman
@@ -53,7 +52,7 @@ class PinjamController extends Controller
     //method untuk hapus data peminjaman
     public function pinjamhapus($id_pinjam)
     {
-        $datapinjam=PinjamModel::find($id_pinjam);
+        $datapinjam = PinjamModel::find($id_pinjam);
         $datapinjam->delete();
 
         return redirect()->back();

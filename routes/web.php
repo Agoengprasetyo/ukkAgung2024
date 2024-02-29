@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\PetugasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,3 +59,7 @@ Route::post('/pinjam/tambah','PinjamController@pinjamtambah');
 Route::get('/pinjam/hapus/{id_pinjam}','PinjamController@pinjamhapus');
 Route::put('/pinjam/edit/{id_pinjam}', 'PinjamController@pinjamedit');
 
+//Route search
+Route::get('/search', [BukuController::class, 'search'])->name('search');
+Route::get('/search', [AnggotaController::class, 'search'])->name('search');
+Route::get('/search', [PetugasController::class, 'search'])->name('search');

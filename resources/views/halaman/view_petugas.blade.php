@@ -2,14 +2,17 @@
 @section('title', 'Petugas')
 
 @section('isihalaman')
-    <h3><center>Daftar Petugas Perpustakaan Smkn 12 Malang</center></h3>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
+    <h3>
+        <center>Daftar Petugas Perpustakaan Smkn 12 Malang</center>
+    </h3>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPetugasTambah">
         Tambah Data Petugas
     </button>
-
     <p>
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" id="myTable" class="display">
         <thead>
             <tr>
                 <td align="center">No</td>
@@ -21,19 +24,21 @@
         </thead>
 
         <tbody>
-            @foreach ($petugas as $index=>$p)
+            @foreach ($petugas as $index => $p)
                 <tr>
                     <td align="center" scope="row">{{ $index + $petugas->firstItem() }}</td>
-                    <td>{{$p->id_petugas}}</td>
-                    <td>{{$p->nama_petugas}}</td>
-                    <td>{{$p->hp}}</td>
+                    <td>{{ $p->id_petugas }}</td>
+                    <td>{{ $p->nama_petugas }}</td>
+                    <td>{{ $p->hp }}</td>
                     <td align="center">
 
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalPetugasEdit{{$p->id_petugas}}">
+                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                            data-target="#modalPetugasEdit{{ $p->id_petugas }}">
                             Edit
                         </button>
-                         <!-- Awal Modal EDIT data petugas -->
-                        <div class="modal fade" id="modalPetugasEdit{{$p->id_petugas}}" tabindex="-1" role="dialog" aria-labelledby="modalPetugasEditLabel" aria-hidden="true">
+                        <!-- Awal Modal EDIT data petugas -->
+                        <div class="modal fade" id="modalPetugasEdit{{ $p->id_petugas }}" tabindex="-1" role="dialog"
+                            aria-labelledby="modalPetugasEditLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -41,13 +46,16 @@
                                     </div>
                                     <div class="modal-body">
 
-                                        <form name="formpetugastaedit" id="formpetugasedit" action="/petugas/edit/{{ $p->id_petugas}} " method="post" enctype="multipart/form-data">
+                                        <form name="formpetugastaedit" id="formpetugasedit"
+                                            action="/petugas/edit/{{ $p->id_petugas }} " method="post"
+                                            enctype="multipart/form-data">
                                             @csrf
                                             {{ method_field('PUT') }}
                                             <div class="form-group row">
                                                 <label for="id_petugas" class="col-sm-4 col-form-label">Nama Petugas</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="nama_petugas" name="nama_petugas" placeholder="Masukkan Nama Petugas">
+                                                    <input type="text" class="form-control" id="nama_petugas"
+                                                        name="nama_petugas" placeholder="Masukkan Nama Petugas">
                                                 </div>
                                             </div>
 
@@ -55,14 +63,17 @@
                                             <div class="form-group row">
                                                 <label for="hp" class="col-sm-4 col-form-label">Hp</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="hp" name="hp" value="{{ $p->hp}}">
+                                                    <input type="text" class="form-control" id="hp" name="hp"
+                                                        value="{{ $p->hp }}">
                                                 </div>
                                             </div>
 
                                             <p>
                                             <div class="modal-footer">
-                                                <button type="button" name="tutup" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                <button type="submit" name="petugastambah" class="btn btn-success">Edit</button>
+                                                <button type="button" name="tutup" class="btn btn-secondary"
+                                                    data-dismiss="modal">Tutup</button>
+                                                <button type="submit" name="petugastambah"
+                                                    class="btn btn-success">Edit</button>
                                             </div>
                                         </form>
                                     </div>
@@ -71,7 +82,7 @@
                         </div>
                         <!-- Akhir Modal EDIT data buku -->
 
-                        <a href="petugas/hapus/{{$p->id_petugas}}" onclick="return confirm('Yakin mau dihapus?')">
+                        <a href="petugas/hapus/{{ $p->id_petugas }}" onclick="return confirm('Yakin mau dihapus?')">
                             <button class="btn-danger">
                                 Delete
                             </button>
@@ -91,19 +102,22 @@
     <!--akhir pagination-->
 
     <!-- Awal Modal tambah data Petugas -->
-    <div class="modal fade" id="modalPetugasTambah" tabindex="-1" role="dialog" aria-labelledby="modalPetugasTambahLabel" aria-hidden="true">
+    <div class="modal fade" id="modalPetugasTambah" tabindex="-1" role="dialog" aria-labelledby="modalPetugasTambahLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalPetugasTambahLabel">Form Input Data Petugas</h5>
                 </div>
                 <div class="modal-body">
-                    <form name="formpetugastambah" id="formpetugastambah" action="/petugas/tambah " method="post" enctype="multipart/form-data">
+                    <form name="formpetugastambah" id="formpetugastambah" action="/petugas/tambah " method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="id_petugas" class="col-sm-4 col-form-label">Nama Petugas</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nama_petugas" name="nama_petugas" placeholder="Masukan Nama Petugas">
+                                <input type="text" class="form-control" id="nama_petugas" name="nama_petugas"
+                                    placeholder="Masukan Nama Petugas">
                             </div>
                         </div>
 
@@ -111,13 +125,15 @@
                         <div class="form-group row">
                             <label for="hp" class="col-sm-4 col-form-label">HP</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="hp" name="hp" placeholder="Masukan HP">
+                                <input type="text" class="form-control" id="hp" name="hp"
+                                    placeholder="Masukan HP">
                             </div>
                         </div>
 
                         <p>
                         <div class="modal-footer">
-                            <button type="button" name="tutup" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="button" name="tutup" class="btn btn-secondary"
+                                data-dismiss="modal">Tutup</button>
                             <button type="submit" name="petugastambah" class="btn btn-success">Tambah</button>
                         </div>
                     </form>
@@ -126,5 +142,14 @@
         </div>
     </div>
     <!-- Akhir Modal tambah data buku -->
+    <script src="
+            https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
+            "></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script>
+        let table = new DataTable('#myTable', {
+            // options
+        });
+    </script>
 
 @endsection

@@ -48,23 +48,12 @@ class BukuController extends Controller
     }
 
     //method untuk edit data buku
-    public function bukuedit($id_buku, Request $request)
+    public function bukuedit(Request $request, $id_anggota)
     {
-        $this->validate($request, [
-            'kode_buku' => 'required',
-            'judul' => 'required',
-            'pengarang' => 'required',
-            'kategori' => 'required'
-        ]);
-
-        $id_buku = BukuModel::find($id_buku);
-        $id_buku->kode_buku   = $request->kode_buku;
-        $id_buku->judul      = $request->judul;
-        $id_buku->pengarang  = $request->pengarang;
-        $id_buku->kategori   = $request->kategori;
-
-        $id_buku->save();
-
-        return redirect()->withSuccess('Berhasil Mengedit Data')->back();
+        $data = BukuModel::find($id_anggota);
+        $data->update($request->all());
+        return back();
     }
+
+
 }
