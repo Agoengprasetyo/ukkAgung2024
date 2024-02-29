@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('auth.login');
 });
 
 //Route untuk Login/Register
 Route::get('/home', function () {
-    return view('view_home');
+    return view('layouts.view_home');
 });
 
 route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -36,7 +36,7 @@ Route::get('/buku/hapus/{id_buku}','BukuController@bukuhapus');
 Route::put('/buku/edit/{id_buku}', 'BukuController@bukuedit');
 
 //Route untuk Data Buku
-Route::get('/home', function(){return view('view_home');});
+Route::get('/home', function(){return view('layouts.view_home');});
 
 //Route untuk Data Anggota
 Route::get('/anggota', 'AnggotaController@anggotatampil');

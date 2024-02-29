@@ -1,4 +1,4 @@
-@extends('index')
+@extends('layouts.index')
 @section('title', 'Petugas')
 
 @section('isihalaman')
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <!-- Akhir Modal EDIT data buku -->
-                        
+
                         <a href="petugas/hapus/{{$p->id_petugas}}" onclick="return confirm('Yakin mau dihapus?')">
                             <button class="btn-danger">
                                 Delete

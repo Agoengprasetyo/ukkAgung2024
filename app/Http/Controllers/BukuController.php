@@ -13,9 +13,9 @@ class BukuController extends Controller
     public function bukutampil()
     {
         $databuku = BukuModel::orderby('kode_buku', 'ASC')
-        ->paginate(5);
+            ->paginate(5);
 
-        return view('halaman/view_buku',['buku'=>$databuku]);
+        return view('halaman/view_buku', ['buku' => $databuku]);
     }
 
     //method untuk tambah data buku
@@ -35,19 +35,19 @@ class BukuController extends Controller
             'kategori' => $request->kategori
         ]);
 
-        return redirect('/buku');
+        return redirect('/buku')->withSuccess('Berhasil Menambahkan data');
     }
 
-     //method untuk hapus data buku
-     public function bukuhapus($id_buku)
-     {
-         $databuku=BukuModel::find($id_buku);
-         $databuku->delete();
- 
-         return redirect()->back();
-     }
+    //method untuk hapus data buku
+    public function bukuhapus($id_buku)
+    {
+        $databuku = BukuModel::find($id_buku);
+        $databuku->delete();
 
-     //method untuk edit data buku
+        return redirect()->back();
+    }
+
+    //method untuk edit data buku
     public function bukuedit($id_buku, Request $request)
     {
         $this->validate($request, [
@@ -65,6 +65,6 @@ class BukuController extends Controller
 
         $id_buku->save();
 
-        return redirect()->back();
+        return redirect()->withSuccess('Berhasil Mengedit Data')->back();
     }
 }

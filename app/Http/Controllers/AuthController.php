@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class AuthController extends Controller
@@ -17,10 +17,15 @@ class AuthController extends Controller
 
     public function registerPost(Request $request)
     {
-        $request['password'] = bcrypt($request['password']);
-        AuthUser::create($request->all());
-        $user = $request->only('email', 'password');
-        return redirect('/login')->withSuccess('Login Berhasil');
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        User::create($validatedData)->all();
+
+        return redirect('/');
     }
 
     public function login()

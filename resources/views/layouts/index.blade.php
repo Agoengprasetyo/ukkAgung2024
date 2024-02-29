@@ -19,11 +19,11 @@
         <div class="alert alert-info text-center">
             <h4 style="margin-bottom: 0px"><b>Selamat datang</b> di Perpustakaan SMECHATWOLASMA</h4>
         </div>
-            @include('menu')
-            @include('banner')
-            @include('sidebar')
-            @include('konten')
-            @include('footer')
+            @include('layouts.menu')
+            @include('layouts.banner')
+            @include('layouts.sidebar')
+            @include('layouts.konten')
+            @include('layouts.footer')
         </div>
     </body>
 </html>
