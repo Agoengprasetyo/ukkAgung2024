@@ -53,11 +53,6 @@ Route::post('/petugas/tambah', 'PetugasController@petugastambah');
 Route::get('/petugas/hapus/{id_petugas}', 'PetugasController@petugashapus');
 Route::put('/petugas/edit/{id_petugas}', 'PetugasController@petugasedit');
 
-//Route untuk Data Peminjaman
-Route::get('/pinjam', 'PinjamController@pinjamtampil');
-Route::post('/pinjam/tambah','PinjamController@pinjamtambah');
-Route::get('/pinjam/hapus/{id_pinjam}','PinjamController@pinjamhapus');
-Route::put('/pinjam/edit/{id_pinjam}', 'PinjamController@pinjamedit');
 
 //Route search
 Route::get('/search', [BukuController::class, 'search'])->name('search');
