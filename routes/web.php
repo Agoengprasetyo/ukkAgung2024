@@ -58,3 +58,5 @@ Route::put('/petugas/edit/{id_petugas}', 'PetugasController@petugasedit');
 Route::get('/search', [BukuController::class, 'search'])->name('search');
 Route::get('/search', [AnggotaController::class, 'search'])->name('search');
 Route::get('/search', [PetugasController::class, 'search'])->name('search');
+
+

@@ -11,7 +11,6 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalBukuTambah">
         Tambah Data Buku
     </button>
-
     <p>
     <table class="table table-bordered table-striped" id="myTable" class="display">
         <thead>
@@ -59,7 +58,8 @@
                                                 <label for="id_buku" class="col-sm-4 col-form-label">Kode Buku</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="kode_buku"
-                                                        name="kode_buku" value="{{ $bk->kode_buku }}" placeholder="Masukan Kode Buku">
+                                                        name="kode_buku" value="{{ $bk->kode_buku }}"
+                                                        placeholder="Masukan Kode Buku">
                                                 </div>
                                             </div>
 
@@ -184,8 +184,8 @@
     </div>
     <!-- Akhir Modal tambah data buku -->
     <script src="
-        https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
-        "></script>
+                https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
+                "></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     <script>
         let table = new DataTable('#myTable', {
